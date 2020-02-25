@@ -29,11 +29,11 @@ The following bach commands will be ran using the [Azure Cloud Shell](https://do
 
 Launch from Azure portal using the Cloud Shell icon
 
-![cloud shell](../../images/portal-launch-icon.png)
+![cloud shell](/images/portal-launch-icon.png)
 
 Select __Bash__
 
-![cloud shell](../../images/overview-choices.png)
+![cloud shell](/images/overview-choices.png)
 
 
 ### 1.3 Create a Resource Group for the Hack
