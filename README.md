@@ -13,10 +13,10 @@ __Objectives:__
 
 The following resources are implemented during the hackathon, please ensure you can create in your subscription or resource group:
 
-- Azure Storage Account - Blob
-- Azure Machine Learning Workspace
-- Azure Databricks
-- Azure DevOps
+- [Azure Storage Account - Blob](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+- [Azure Machine Learning Workspace](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
+- [Azure Databricks](https://docs.microsoft.com/en-us/azure/azure-databricks/what-is-azure-databricks)
+- [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops?view=azure-devops)
 
 ### 1.1 Azure Portal
 
