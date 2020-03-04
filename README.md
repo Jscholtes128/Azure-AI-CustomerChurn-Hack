@@ -9,6 +9,9 @@ __Objectives:__
 - Implement a repeatible ML solution using Azure Machine Learning and Azure Databricks.
 - Set-up MLOps for CI/CD model staging with Azure DevOps.
 
+1. [Hackathon Prerequisites](#1-hackathon-prerequisites)
+    1.1. [1.1 Azure Portal](#11-azure-portal)
+
 ## 1. Hackathon Prerequisites 
 
 The following resources are implemented during the hackathon, please ensure you can create in your subscription or resource group:
@@ -120,6 +123,6 @@ az ml workspace create -w $workspace -g $resourceGroupName
 
 Azure Databricks is an Apache Spark-based analytics platform optimized for the Microsoft Azure cloud services platform. 
 
-![databricks](/images/azure-databricks-overview.png.png)
+![databricks](/images/azure-databricks-overview.png)
 
 [Create Azure Databricks Workspace](https://docs.microsoft.com/en-us/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace)
