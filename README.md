@@ -4,14 +4,17 @@
 
 Let’s get hands-on with Azure Machine Learning by developing a Customer Churn solution. In this hack we will source a flat file for our model, leverage Azure Machine Learning Service and Azure Databricks for data prep, experimentation tracking, model development, model deployment and MLOps.
 
-__Objectives:__
+## Objectives
 
 - Implement a repeatible ML solution using Azure Machine Learning and Azure Databricks.
 - Set-up MLOps for CI/CD model staging with Azure DevOps.
 
+## Contents
+
 * 1 [Hackathon Prerequisites](#1-hackathon-prerequisites)
     * 1.1 [Azure Portal](#11-azure-portal)
     * 1.2 [Using Cloud Shell](#12-using-cloud-shell)
+* 2 [Data Preparation](02-DataPrep/)
 
 ## 1 Hackathon Prerequisites 
 
@@ -120,10 +123,13 @@ az ml workspace create -w $workspace -g $resourceGroupName
 [Create Azure Machine Learning Workspace](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-manage-workspace)
 
 
-### 1.6 Create Azure Databricks
+### 1.6 Azure Databricks
 
 Azure Databricks is an Apache Spark-based analytics platform optimized for the Microsoft Azure cloud services platform. 
 
 ![databricks](/images/azure-databricks-overview.png)
+
+
+#### 1.6.1 Azure Databricks Workspace - Use Azure Portal
 
 [Create Azure Databricks Workspace](https://docs.microsoft.com/en-us/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace)
