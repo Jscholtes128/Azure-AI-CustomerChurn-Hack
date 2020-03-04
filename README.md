@@ -9,10 +9,11 @@ __Objectives:__
 - Implement a repeatible ML solution using Azure Machine Learning and Azure Databricks.
 - Set-up MLOps for CI/CD model staging with Azure DevOps.
 
-* 1. [Hackathon Prerequisites](#1-hackathon-prerequisites)
- * 1.1. [1.1 Azure Portal](#11-azure-portal)
+* 1 [Hackathon Prerequisites](#1-hackathon-prerequisites)
+    * 1.1 [Azure Portal](#11-azure-portal)
+    * 1.2 [Using Cloud Shell](#12-using-cloud-shell)
 
-## 1. Hackathon Prerequisites 
+## 1 Hackathon Prerequisites 
 
 The following resources are implemented during the hackathon, please ensure you can create in your subscription or resource group:
 
