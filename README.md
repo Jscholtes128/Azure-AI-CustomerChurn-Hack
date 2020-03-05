@@ -1,22 +1,24 @@
-# Azure Customer Churn Hackathon
+# Azure Customer Churn Workshop / Hack Event
 
 ![hackathon design](/images/hackathon.jpg)
 
-Let’s get hands-on with Azure Machine Learning by developing a Customer Churn solution. In this hack we will source a flat file for our model, leverage Azure Machine Learning Service and Azure Databricks for data prep, experimentation tracking, model development, model deployment and MLOps.
+Let’s get hands-on with Azure Machine Learning by working through a customer churn prediction solution. During this event we will quickly gain experience with Azure Machine Learning and Azure Databricks using the provided data in preparation for a hackathon.
 
 ## Objectives
 
-- Implement a repeatible ML solution using Azure Machine Learning and Azure Databricks.
-- Set-up MLOps for CI/CD model staging with Azure DevOps.
+- Learn how to securly ingest data located in an Azure Storage Account from Azure Databrick
+- Track experimentation with Azure Machine Learning & Azure Databricks
+- Leverage Azure Databricks as a collaboritive workspace to accelerate data exploration and model development.
+- Explore MlOps pipelines with Azure Machine Learning and Azure DevOps
 
 ## Contents
 
 * 1 [Hackathon Prerequisites](#1-hackathon-prerequisites)
     * 1.1 [Azure Portal](#11-azure-portal)
     * 1.2 [Using Cloud Shell](#12-using-cloud-shell)
-* 2 [Data Preparation](02-DataPrep/)
+* 2 [Data Preparation](02-DataLoad/)
 
-## 1 Hackathon Prerequisites 
+## 1 Hackathon Prerequisites
 
 The following resources are implemented during the hackathon, please ensure you can create in your subscription or resource group:
 
@@ -51,7 +53,7 @@ Select __Bash__
 
 A resource group is a logical collection of Azure resources. All resources are deployed and managed in a resource group. To create a resource group:
 
-##### 1.3.1 Resource Group - Use Azure CLI
+#### 1.3.1 Resource Group - Use Azure CLI
 
 ```bash
 resourceGroupName=churnhackathon-$RANDOM
@@ -59,10 +61,11 @@ location=SouthCentralUS
 
 az group create \
    --name $resourceGroupName \
-   --location $location 
+   --location $location
 ```
 
 #### 1.3.2 Resource Group - Use Azure Portal
+
 [Create Resource Group](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-create#create-a-resource-group)
 
 ### 1.4 Create an Azure Storage Account
@@ -72,7 +75,7 @@ An Azure storage account contains all of your Azure Storage data objects: blobs,
 #### 1.4.1 Storage - Use Azure CLI
 
 ```bash
-accountName=churnhackathon-$RANDON
+accountName=churnhackstore$RANDOM
 
 
 az storage account create \
@@ -85,6 +88,7 @@ az storage account create \
 az storage container create --account-name $accountName --name data
 
 ```
+
 #### 1.4.2 Storage - Use Azure Portal
 
 [Create Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
@@ -105,7 +109,10 @@ az storage blob upload \
     --account-name $accountName \
     --container-name data \
     --name Churn_Modelling.csv  \
-    --file Churn_Modelling.csv 
+    --file Churn_Modelling.csv
+
+rm churn.zip
+rm Churn_Modelling.csv
 ```
 
 ### 1.5 Create Azure Machine Learning Workspace
@@ -116,10 +123,11 @@ __Pricing Tiers:__ Azure Machine Learning Serivce has two pricing tiers, Basice 
 
 ![amls](/images/azure-machine-learning-taxonomy.png)
 
-##### 1.5.1 Azure Machine Learning Workspace - Use Azure CLI
+#### 1.5.1 Azure Machine Learning Workspace - Use Azure CLI
 
 ```bash
-workspace=churnhackathonworkspace-$RANDOM
+workspace=churnhackml-$RANDOM
+az extension add -n azure-cli-ml
 az ml workspace create -w $workspace -g $resourceGroupName
 ```
 
@@ -127,14 +135,11 @@ az ml workspace create -w $workspace -g $resourceGroupName
 
 [Create Azure Machine Learning Workspace](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-manage-workspace)
 
-
 ### 1.6 Azure Databricks
 
 Azure Databricks is an Apache Spark-based analytics platform optimized for the Microsoft Azure cloud services platform. 
 
-
 ![databricks](/images/azure-databricks-overview.png)
-
 
 #### 1.6.1 Azure Databricks Workspace - Use Azure Portal
 
