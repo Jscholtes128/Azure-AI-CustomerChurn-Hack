@@ -29,6 +29,11 @@ The following resources are implemented during the hackathon, please ensure you 
 
 Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/en-us/free/) before you begin.
 
+#### 1.1.1 Do you have Enough Cores?
+
+We will need to have enough cores availble to use to spin up a multinode Azure Databricks cluster and deploy to ACI (Azure Container Instance) at the very least. At the very minimum we would need 16 cores available ((4x) 4 Core VMs).
+
+[View you usage and quotas.](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-manage-quotas#view-your-usage-and-quotas)
 
 ### 1.2 Using Cloud Shell
 
@@ -101,15 +106,15 @@ az storage blob upload \
     --container-name data \
     --name Churn_Modelling.csv  \
     --file Churn_Modelling.csv 
-
 ```
 
 ### 1.5 Create Azure Machine Learning Workspace
 
 Azure Machine Learning can be used for any kind of machine learning, from classical ml to deep learning, supervised, and unsupervised learning. Whether you prefer to write Python or R code or zero-code/low-code options such as the designer, you can build, train, and track highly accurate machine learning and deep-learning models in an __Azure Machine Learning Workspace__.
 
-![amls](/images/azure-machine-learning-taxonomy.png)
+__Pricing Tiers:__ Azure Machine Learning Serivce has two pricing tiers, Basice and Enterprice. Basic will be suficient for this material as we will use a 'code first' approach. Please review the [pricing tier documentation](https://azure.microsoft.com/en-us/pricing/details/machine-learning/).
 
+![amls](/images/azure-machine-learning-taxonomy.png)
 
 ##### 1.5.1 Azure Machine Learning Workspace - Use Azure CLI
 
@@ -126,6 +131,7 @@ az ml workspace create -w $workspace -g $resourceGroupName
 ### 1.6 Azure Databricks
 
 Azure Databricks is an Apache Spark-based analytics platform optimized for the Microsoft Azure cloud services platform. 
+
 
 ![databricks](/images/azure-databricks-overview.png)
 
