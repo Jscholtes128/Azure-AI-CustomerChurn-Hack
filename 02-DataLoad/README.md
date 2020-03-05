@@ -111,12 +111,13 @@ if not(True in [x.mountPoint == '/mnt/churndata' for x in dbutils.fs.mounts()]):
 
 #### 2.4.1 Load Customer Churn Data
 
-Read the csv data into a pyspark Dataframe. Save the Dataframe as a table for use in the prep and modeling NoteBooks. 
+Read the csv data into a pyspark Dataframe and save as a table for use in additional NoteBooks.
 
 ```python
 churn_df = spark.read.csv("/mnt/churndata/Churn_Modelling.csv",header=True,inferSchema=True)
 churn_df.write.saveAsTable('customer_churn')
 ```
+
 View Customer Data
 
 ![select customers](../images/select_customer_churn.PNG)
