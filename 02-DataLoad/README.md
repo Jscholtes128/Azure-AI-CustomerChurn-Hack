@@ -34,11 +34,11 @@ Navigate to your newly created key vault in the Azure portal and select Secrets.
 
 On the Create a secret page, provide the following information, and keep the default values for the remaining fields:
 
-| Property | Value |
-|.................|.............................|
-|Upload options | Manual |
-|Name | Friendly name for your storage account key.|
-|Value | key1 from your storage account. |
+|Property|Value|
+|---------------|--------------------------------------------|
+|Upload options|Manual|
+|Name| Friendly name for your storage account key.|
+|Value|key1 from your storage account.|
 
 ![create secret](../images/create-storage-secret.png)
 
@@ -71,13 +71,19 @@ Enter a cluster name and select Create cluster. The cluster creation takes a few
 
 #### 2.3.2 Create Databricks Notebook
 
-Once the cluster is created, navigate to the home page of your Azure Databricks workspace, select New Notebook under Common Tasks.
+Once the cluster is created, navigate to the home page of your Azure Databricks workspace, select New Notebook under Common Tasks. This will be the Notebook for the initial __Data Load__.
 
 ![create notebook](../images/create-new-notebook.png)
 
-Enter a notebook name, and set the language to Python. Set the cluster to the name of the cluster you created in the previous step.
+Enter a notebook name (_Data Load_ or _01-Data Load_ or something similar), and set the language to Python. Set the cluster to the name of the cluster you created in the previous step.
 
-#### 2.3.3 Mounting Blob Storage
+### 2.4 Loading Customer Chun Data
+
+#### 2.4.1 Mount Storage Account
+
+Mount the Azure Storage Account where the customer churn CSV is stored; pass the recently created __secret scope__ and __secret__.
+
+##### 2.4.1.1 Example Mount
 
 Example mounting Azure Storage Account
 
@@ -93,4 +99,24 @@ extra_configs = {"<conf-key>":dbutils.secrets.get(scope = "<scope-name>", key = 
 * __scope-name__ is the name of the secret scope you created in the previous section.
 * __key-name__ is the name of they secret you created for the storage account key in your key vault.
 
-### 2.4 Loading Customer Chun Data
+##### 2.4.1.2 Customer Churn Mount
+
+```python
+if not(True in [x.mountPoint == '/mnt/churndata' for x in dbutils.fs.mounts()]):
+    dbutils.fs.mount(
+    source = "wasbs://data@<your-storage-account-name>blob.core.windows.net",
+    mount_point = "/mnt/churndata",
+    extra_configs = {"fs.azure.account.key.<your-storage-account-name>.blob.core.windows.net":dbutils.secrets.get(scope = "churnhackscope", key = "churnhack")})
+```
+
+#### 2.4.1 Load Customer Churn Data
+
+Read the csv data into a pyspark Dataframe. Save the Dataframe as a table for use in the prep and modeling NoteBooks. 
+
+```python
+churn_df = spark.read.csv("/mnt/churndata/Churn_Modelling.csv",header=True,inferSchema=True)
+churn_df.write.saveAsTable('customer_churn')
+```
+View Customer Data
+
+![select customers](../images/select_customer_churn.PNG)

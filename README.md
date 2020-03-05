@@ -143,4 +143,6 @@ Azure Databricks is an Apache Spark-based analytics platform optimized for the M
 
 #### 1.6.1 Azure Databricks Workspace - Use Azure Portal
 
+During this event we will be looking at the best practices for securely connecting to data source; to accomplish this you will need to use Azure Databricks __premium tier__.
+
 [Create Azure Databricks Workspace](https://docs.microsoft.com/en-us/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace)
