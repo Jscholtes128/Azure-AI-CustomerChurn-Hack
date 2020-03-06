@@ -27,7 +27,7 @@ Let’s get hands-on with Azure Machine Learning by working through a customer c
   * [1.5 Create Azure Machine Learning Workspace](01-PreReq/#15-create-azure-machine-learning-workspace)
     + [1.5.1 Azure Machine Learning Workspace - Use Azure CLI](01-PreReq/#151-azure-machine-learning-workspace---use-azure-cli)
     + [1.5.2 Azure Machine Learning Workspace - Use Azure Portal](01-PreReq/#152-azure-machine-learning-workspace---use-azure-portal)
-  * [1.6 Azure Databricks (Premium Tier)](01-PreReq/#16-azure-databricks--premium-tier-)
+  * [1.6 Azure Databricks (Premium Tier)](01-PreReq/#16-azure-databricks-premium-tier)
     + [1.6.1 Azure Databricks Workspace - Use Azure Portal](01-PreReq/#161-azure-databricks-workspace---use-azure-portal)
 - __[2 Data Load with Azure Databricks](02-DataLoad/)__
   * [2.1 Set-up Secret Store with Azure Key Vault](02-DataLoad/#21-set-up-secret-store-with-azure-key-vault)
