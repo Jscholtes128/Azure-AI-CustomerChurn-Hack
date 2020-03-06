@@ -2,9 +2,9 @@
 
 ![hackathon design](../images/hackathon.jpg)
 
-## 5 Azure MLOPs - CI/CD
+## 4 Azure MLOPs - CI/CD
 
-### 5.1 Service Principal Authentication
+### 4.1 Service Principal Authentication
 
 When setting up a machine learning workflow as an automated process, we recommend using Service Principal Authentication. This approach decouples the authentication from any specific user login, and allows managed access control.
 Note that you must have administrator privileges over the Azure subscription to complete these steps.
@@ -51,7 +51,7 @@ ws = Workspace(workspace_name = workspace_name,
                auth=svc_pr)
 ```
 
-### 5.2 Azure DevOps MLOPs Pipeline
+### 4.2 Azure DevOps MLOPs Pipeline
 
 Go to your Azure DevOps organization '<https://[organization].visualstudio.com/>' and create a new project.
 
@@ -60,7 +60,7 @@ Go to your Azure DevOps organization '<https://[organization].visualstudio.com/>
 ![new project](../images/new_devops_project_details.PNG)
 
 
-#### 5.2.1 Connecting Azure Databricks to Azure DevOps
+#### 4.2.1 Connecting Azure Databricks to Azure DevOps
 
  ![new rep](../images/repo_icon.PNG) Afer createing your new project, your will need to initialize the Repository.
 
@@ -68,7 +68,7 @@ Go to your Azure DevOps organization '<https://[organization].visualstudio.com/>
 
 Then follow the steps for [Azure DevOps Services Version Control](https://docs.microsoft.com/en-us/azure/databricks/notebooks/azure-devops-services-version-control)
 
-#### 5.2.2 Create a new Pipeline MLOps Pipeline
+#### 4.2.2 Create a new Pipeline MLOps Pipeline
 
 ![initialize](../images/new_pipeline.png)
 
@@ -78,7 +78,7 @@ Then follow the steps for [Azure DevOps Services Version Control](https://docs.m
 
 Start with an **Empty Job**
 
-#### 5.2.3 Adding Databrick Pipeline Tasks from Marketplace
+#### 4.2.3 Adding Databrick Pipeline Tasks from Marketplace
 
 Go to **Add Task** then search for **Databricks**. You will need to add the Databricks tasks from the _Marketplace_.
 
@@ -90,6 +90,6 @@ Example of _Build pipeline_
 
 ![initialize](../images/build_pipeline.PNG)
 
-#### 5.2.3.1 Generate a Personal Access Token in Databricks
+#### 4.2.3.1 Generate a Personal Access Token in Databricks
 
 Generate a Databricks [Personal Access Token](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/authentication#--generate-a-token)
