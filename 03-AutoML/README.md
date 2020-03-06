@@ -35,12 +35,37 @@ Visualize the data with Azure Databricks
 
 [Example](https://www.kaggle.com/rafjaa/resampling-strategies-for-imbalanced-datasets) on resampling imbalanced data
 
-```python
-import azureml.dataprep as dprep
-import uuid
+##### 3.2.2.1 Undersampling Example
 
-x_prep = dprep.read_pandas_dataframe(<Create Preped Pandas Dataframe>.drop('Exited',axis=1),temp_folder='/dbfs/tmp'+str(uuid.uuid4()))
-y_prep  = dprep.read_pandas_dataframe(<<Create Preped Pandas Dataframe>[['Exited']],temp_folder='/dbfs/tmp'+str(uuid.uuid4()))
+```python
+
+drop_columns = ['RowNumber','CustomerId','Surname']
+customer_columns = churn_df.columns
+column = [x for x in customer_columns if x not in drop_columns]
+
+final_df = churn_df[column]
+final_df_pd = final_df.toPandas()
+
+import pandas as pd
+# Exited count
+count_exited_0, count_exited_1 = final_df_pd.Exited.value_counts()
+
+# Divide by Exited Customers
+df_exited_0 = final_df_pd[final_df_pd['Exited'] == 0]
+df_exited_1 = final_df_pd[final_df_pd['Exited'] == 1]
+
+df_exited_0_under = df_exited_0.sample(count_exited_1)
+df_test_under = pd.concat([df_exited_0_under, df_exited_1], axis=0)
+
+churn_df = spark.createDataFrame(df_test_under)
+
+```
+
+![undersample hist](../images/undersample_exited_hist.PNG)
+
+```python
+#Save 'Silver' Dataset for Auto ML
+churn_df.write.format('delta').mode('overwrite').partitionBy('Geography').option('path', "/mnt/churndata/silver").saveAsTable('customer_churn_silver')
 ```
 
 ### 3.3 Training with Azure Automated ML
@@ -66,7 +91,19 @@ ws = Workspace(workspace_name = workspace_name,
 
 ```
 
-#### 3.3.2 AutoML COnfiguration
+#### 3.3.2 Load Preped ML Dataset
+
+```python
+import azureml.dataprep as dprep
+import uuid
+
+churn_df = spark.read.table('customer_churn_silver')
+
+x_prep = dprep.read_pandas_dataframe(churn_df.toPandas().drop('Exited',axis=1),temp_folder='/dbfs/tmp'+str(uuid.uuid4()))
+y_prep  = dprep.read_pandas_dataframe(churn_df.toPandas()[['Exited']],temp_folder='/dbfs/tmp'+str(uuid.uuid4()))
+```
+
+#### 3.3.3 AutoML Configuration
 
 We will crate the AutoMLCofig to specify the setting for our ML experimentation run. Please view the latest parameter details for [AutoMlConfig](https://docs.microsoft.com/en-us/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig?view=azure-ml-py) as new features continue to be added.
 
@@ -97,7 +134,7 @@ project_folder = './projects/automl-churn'
 experiment = Experiment(ws, experiment_name)
 ```
 
-#### 3.3.3 Running and AutoML Experiment
+#### 3.3.4 Running and AutoML Experiment
 
 We will submit our automl configuration using the experiment we created above to run the training:
 
@@ -106,3 +143,18 @@ run = experiment.submit(automl_classifier, show_output=False)
 ```
 
 For a large number of iterations it is recommended to set *show_output* to __False__.
+
+Go to your Azure Machine Learning Workspace and launch the new studio.
+
+![aml new studio](../images/new_amls_studio.PNG)
+
+Then go to  __Experiments__ to view your running experiment
+
+![aml new studio](../images/experiments_link.PNG)
+
+![aml new studio](../images/experiment_runs.PNG)
+
+Find your 'Best' model.
+
+![aml new studio](../images/run_models.PNG)
+

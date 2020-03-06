@@ -115,7 +115,7 @@ Read the csv data into a pyspark Dataframe and save as a table for use in additi
 
 ```python
 churn_df = spark.read.csv("/mnt/churndata/Churn_Modelling.csv",header=True,inferSchema=True)
-churn_df.write.saveAsTable('customer_churn')
+churn_df.write.format('delta').mode('overwrite').partitionBy('Geography').option('path', "/mnt/churndata/raw").saveAsTable('customer_churn')
 ```
 
 View Customer Data
