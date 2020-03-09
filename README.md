@@ -13,7 +13,7 @@ Let’s get hands-on with Azure Machine Learning by working through a customer c
 
 ## [Step 1 Hackathon Prerequisites](01-PreReq/)
 
-<table>
+<table border=0>
 <tr>
 <td><img align="left" src="/images/config_img.png"> </td><td>Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
 
@@ -27,41 +27,17 @@ The following resources are implemented through-out this material, please ensure
 </tr>
 </table>
 
+## [Step 2 Data Load with Azure Databricks](02-DataLoad/)
+
+<table border=0>
+<tr>
+<td><img align="left" src="/images/data_load.png" > </td><td>Leverage Powerful cloud compute with Spark as a Service to load, transform and explore the customer churn data.
+</td>
+</tr>
+</table>
+
 ## Contents
 
-- __[1 Hackathon Prerequisites](01-PreReq/)__
-  * [1.1 Azure Portal](01-PreReq/#11-azure-portal)
-    + [1.1.1 Do you have Enough Cores?](01-PreReq/#111-do-you-have-enough-cores-)
-  * [1.2 Using Cloud Shell](01-PreReq/#12-using-cloud-shell)
-  * [1.3 Create a Resource Group for the Hack](01-PreReq/#13-create-a-resource-group-for-the-hack)
-    + [1.3.1 Resource Group - Use Azure CLI](01-PreReq/#131-resource-group---use-azure-cli)
-    + [1.3.2 Resource Group - Use Azure Portal](01-PreReq/#132-resource-group---use-azure-portal)
-  * [1.4 Create an Azure Storage Account](01-PreReq/#14-create-an-azure-storage-account)
-    + [1.4.1 Storage - Use Azure CLI](01-PreReq/#141-storage---use-azure-cli)
-    + [1.4.2 Storage - Use Azure Portal](01-PreReq/#142-storage---use-azure-portal)
-    + [1.4.3 Download Churn Data](01-PreReq/#143-download-churn-data)
-  * [1.5 Create Azure Machine Learning Workspace](01-PreReq/#15-create-azure-machine-learning-workspace)
-    + [1.5.1 Azure Machine Learning Workspace - Use Azure CLI](01-PreReq/#151-azure-machine-learning-workspace---use-azure-cli)
-    + [1.5.2 Azure Machine Learning Workspace - Use Azure Portal](01-PreReq/#152-azure-machine-learning-workspace---use-azure-portal)
-  * [1.6 Azure Databricks (Premium Tier)](01-PreReq/#16-azure-databricks-premium-tier)
-    + [1.6.1 Azure Databricks Workspace - Use Azure Portal](01-PreReq/#161-azure-databricks-workspace---use-azure-portal)
-- __[2 Data Load with Azure Databricks](02-DataLoad/)__
-  * [2.1 Set-up Secret Store with Azure Key Vault](02-DataLoad/#21-set-up-secret-store-with-azure-key-vault)
-    + [2.1.1 Create an Azure Key Vault - Use Azure CLI](02-DataLoad/#211-create-an-azure-key-vault---use-azure-cli)
-    + [2.1.2 Create an Azure Key Vault - Use Azure Portal](02-DataLoad/#212-create-an-azure-key-vault---use-azure-portal)
-  * [2.2 Create a Secret and Secret scope for Azure Storage Account](02-DataLoad/#22-create-a-secret-and-secret-scope-for-azure-storage-account)
-    + [2.2.1 Get Storage Account Key](02-DataLoad/#221-get-storage-account-key)
-    + [2.2.2 Create Azure Key Vault Secret](02-DataLoad/#222-create-azure-key-vault-secret)
-    + [2.2.3 Create Azure Databricks Secret Scope](02-DataLoad/#223-create-azure-databricks-secret-scope)
-  * [2.3 Mounting Azure Storage Account with Azure Databricks](02-DataLoad/#23-mounting-azure-storage-account-with-azure-databricks)
-    + [2.3.1 Create Databricks Cluster](02-DataLoad/#231-create-databricks-cluster)
-    + [2.3.2 Create Databricks Notebook](02-DataLoad/#232-create-databricks-notebook)
-  * [2.4 Loading Customer Chun Data](02-DataLoad/#24-loading-customer-chun-data)
-    + [2.4.1 Mount Storage Account](02-DataLoad/#241-mount-storage-account)
-      - [2.4.1.1 Example Mount](02-DataLoad/#2411-example-mount)
-      - [2.4.1.2 Customer Churn Mount](02-DataLoad/#2412-customer-churn-mount)
-    + [2.4.1 Load Customer Churn Data](02-DataLoad/#241-load-customer-churn-data)
-    - [Azure Customer Churn Hackathon](#azure-customer-churn-hackathon)
 - __[3 Azure Automated ML and Azure Databricks](03-AutoML/)__
   * [3.1 Install Python SDK on Databricks](03-AutoML/#31-install-python-sdk-on-databricks)
   * [3.2 Prepare the Customer Churn Data](03-AutoML/#32-prepare-the-customer-churn-data)
