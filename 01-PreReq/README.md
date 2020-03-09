@@ -4,12 +4,25 @@
 
 ## 1 Hackathon Prerequisites
 
-The following resources are implemented during the hackathon, please ensure you can create in your subscription or resource group:
+### Contents
 
-- [Azure Storage Account - Blob](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)
-- [Azure Machine Learning Workspace](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
-- [Azure Databricks](https://docs.microsoft.com/en-us/azure/azure-databricks/what-is-azure-databricks)
-- [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops?view=azure-devops)
+- __1 Hackathon Prerequisites__
+  * [1.1 Azure Portal](#11-azure-portal)
+    + [1.1.1 Do you have Enough Cores?](#111-do-you-have-enough-cores-)
+  * [1.2 Using Cloud Shell](#12-using-cloud-shell)
+  * [1.3 Create a Resource Group for the Hack](#13-create-a-resource-group-for-the-hack)
+    + [1.3.1 Resource Group - Use Azure CLI](#131-resource-group---use-azure-cli)
+    + [1.3.2 Resource Group - Use Azure Portal](#132-resource-group---use-azure-portal)
+  * [1.4 Create an Azure Storage Account](#14-create-an-azure-storage-account)
+    + [1.4.1 Storage - Use Azure CLI](#141-storage---use-azure-cli)
+    + [1.4.2 Storage - Use Azure Portal](#142-storage---use-azure-portal)
+    + [1.4.3 Download Churn Data](#143-download-churn-data)
+  * [1.5 Create Azure Machine Learning Workspace](#15-create-azure-machine-learning-workspace)
+    + [1.5.1 Azure Machine Learning Workspace - Use Azure CLI](#151-azure-machine-learning-workspace---use-azure-cli)
+    + [1.5.2 Azure Machine Learning Workspace - Use Azure Portal](#152-azure-machine-learning-workspace---use-azure-portal)
+  * [1.6 Azure Databricks (Premium Tier)](#16-azure-databricks-premium-tier)
+    + [1.6.1 Azure Databricks Workspace - Use Azure Portal](#161-azure-databricks-workspace---use-azure-portal)
+
 
 ### 1.1 Azure Portal
 
@@ -17,7 +30,7 @@ Azure subscription. If you don't have one, create a [free account](https://azure
 
 #### 1.1.1 Do you have Enough Cores?
 
-We will need to have enough cores availble to use to spin up a multinode Azure Databricks cluster and deploy to ACI (Azure Container Instance) at the very least. At the very minimum we would need 16 cores available ((4x) 4 Core VMs).
+We will need to have enough cores available to use to spin up a multi-node Azure Databricks cluster and deploy to ACI (Azure Container Instance) at the very least. At the very minimum we would need 16 cores available ((4x) 4 Core VMs).
 
 [View you usage and quotas.](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-manage-quotas#view-your-usage-and-quotas)
 
@@ -103,7 +116,7 @@ rm Churn_Modelling.csv
 
 Azure Machine Learning can be used for any kind of machine learning, from classical ml to deep learning, supervised, and unsupervised learning. Whether you prefer to write Python or R code or zero-code/low-code options such as the designer, you can build, train, and track highly accurate machine learning and deep-learning models in an __Azure Machine Learning Workspace__.
 
-__Pricing Tiers:__ Azure Machine Learning Serivce has two pricing tiers, Basice and Enterprice. Basic will be suficient for this material as we will use a 'code first' approach. Please review the [pricing tier documentation](https://azure.microsoft.com/en-us/pricing/details/machine-learning/).
+__Pricing Tiers:__ Azure Machine Learning Service has two pricing tiers, _Basic_ and _Enterprise_. Basic will be sufficient for this material as we will use a 'code first' approach. Please review the [pricing tier documentation](https://azure.microsoft.com/en-us/pricing/details/machine-learning/).
 
 ![amls](../images/azure-machine-learning-taxonomy.png)
 

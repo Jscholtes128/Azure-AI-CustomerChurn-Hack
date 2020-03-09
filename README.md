@@ -6,10 +6,23 @@ Let’s get hands-on with Azure Machine Learning by working through a customer c
 
 ## Objectives
 
-- Learn how to securly ingest data located in an Azure Storage Account from Azure Databrick
+- Learn how to securely ingest data located in an Azure Storage Account from Azure Databrick
 - Track experimentation with Azure Machine Learning & Azure Databricks
-- Leverage Azure Databricks as a collaboritive workspace to accelerate data exploration and model development.
+- Leverage Azure Databricks as a collaborative workspace to accelerate data exploration and model development.
 - Explore MlOps pipelines with Azure Machine Learning and Azure DevOps
+
+
+## 1 [Hackathon Prerequisites](01-PreReq/)
+
+![Config](/images/config_img.png) Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
+
+The following resources are implemented through-out this material, please ensure you can create in your subscription or resource group:
+
+- [Azure Storage Account - Blob](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+- [Azure Machine Learning Workspace](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
+- [Azure Databricks](https://docs.microsoft.com/en-us/azure/azure-databricks/what-is-azure-databricks)
+- [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops?view=azure-devops)
+
 
 ## Contents
 
