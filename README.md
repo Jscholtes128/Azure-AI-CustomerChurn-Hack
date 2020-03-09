@@ -11,10 +11,13 @@ Let’s get hands-on with Azure Machine Learning by working through a customer c
 - Leverage Azure Databricks as a collaborative workspace to accelerate data exploration and model development.
 - Explore MlOps pipelines with Azure Machine Learning and Azure DevOps
 
+![img](/images/config_img.png) | test
+
 
 ## 1 [Hackathon Prerequisites](01-PreReq/)
 
-![Config](/images/config_img.png) Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
+
+<img align="left" src="/images/config_img.png"> Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
 
 The following resources are implemented through-out this material, please ensure you can create in your subscription or resource group:
 
