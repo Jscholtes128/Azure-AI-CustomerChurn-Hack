@@ -2,7 +2,18 @@
 
 ![hackathon design](../images/hackathon.jpg)
 
-## 4 Azure MLOPs - CI/CD
+## 4 Model Deployment Automation with Azure DevOps (CI/CD)
+
+### Contents
+
+- __4 Model Deployment Automation with Azure DevOps (CI/CD)__
+  * [4.1 Service Principal Authentication](#41-service-principal-authentication)
+  * [4.2 Azure DevOps MLOPs Pipeline](#42-azure-devops-mlops-pipeline)
+    + [4.2.1 Connecting Azure Databricks to Azure DevOps](#421-connecting-azure-databricks-to-azure-devops)
+    + [4.2.2 Create a new Pipeline MLOps Pipeline](#422-create-a-new-pipeline-mlops-pipeline)
+    + [4.2.3 Adding Databrick Pipeline Tasks from Marketplace](#423-adding-databrick-pipeline-tasks-from-marketplace)
+    + [4.2.3.1 Generate a Personal Access Token in Databricks](#4231-generate-a-personal-access-token-in-databricks)
+
 
 ### 4.1 Service Principal Authentication
 
@@ -62,7 +73,7 @@ Go to your Azure DevOps organization '<https://[organization].visualstudio.com/>
 
 #### 4.2.1 Connecting Azure Databricks to Azure DevOps
 
- ![new rep](../images/repo_icon.PNG) Afer createing your new project, your will need to initialize the Repository.
+ ![new rep](../images/repo_icon.PNG) After creating your new project, your will need to initialize the Repository.
 
 ![initialize](../images/initialize_repo.PNG)
 

@@ -4,7 +4,7 @@
 
 ## 3 Azure Automated ML and Azure Databricks
 
-## Contents
+### Contents
 
 - __3 Azure Automated ML and Azure Databricks__
   * [3.1 Install Python SDK on Databricks](#31-install-python-sdk-on-databricks)

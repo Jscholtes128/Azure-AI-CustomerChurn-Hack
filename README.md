@@ -36,7 +36,7 @@ The following resources are implemented through-out this material, please ensure
 </tr>
 </table>
 
-## [Step 3 Azure Automated ML and Azure Databricks](03-AutoML/)
+## [Step 3 - Azure Automated ML and Azure Databricks](03-AutoML/)
 
 <table>
 <tr>
@@ -45,13 +45,14 @@ The following resources are implemented through-out this material, please ensure
 </tr>
 </table>
 
+## [Step 4 - Model Deployment Automation with Azure DevOps (CI/CD)](04-MLOps-CICD/)
 
-## Contents
+<table>
+<tr>
+<td><img align="left" src="/images/deployment_automation.png" > </td><td>Automate the Databricks Notebooks that were created for data prep, model training and model deployment in a CI/CD pipeline with Azure DevOps.
+</td>
+</tr>
+</table>
 
-- __[4 Azure MLOPs - CI/CD](04-MLOps-CICD/)__
-  * [4.1 Service Principal Authentication](04-MLOps-CICD/#41-service-principal-authentication)
-  * [4.2 Azure DevOps MLOPs Pipeline](04-MLOps-CICD/#42-azure-devops-mlops-pipeline)
-    + [4.2.1 Connecting Azure Databricks to Azure DevOps](04-MLOps-CICD/#421-connecting-azure-databricks-to-azure-devops)
-    + [4.2.2 Create a new Pipeline MLOps Pipeline](04-MLOps-CICD/#422-create-a-new-pipeline-mlops-pipeline)
-    + [4.2.3 Adding Databrick Pipeline Tasks from Marketplace](04-MLOps-CICD/#423-adding-databrick-pipeline-tasks-from-marketplace)
-    + [4.2.3.1 Generate a Personal Access Token in Databricks](04-MLOps-CICD/#4231-generate-a-personal-access-token-in-databricks)
+
+
