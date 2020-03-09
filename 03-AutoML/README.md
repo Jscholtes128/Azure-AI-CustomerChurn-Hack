@@ -4,6 +4,20 @@
 
 ## 3 Azure Automated ML and Azure Databricks
 
+## Contents
+
+- __3 Azure Automated ML and Azure Databricks__
+  * [3.1 Install Python SDK on Databricks](#31-install-python-sdk-on-databricks)
+  * [3.2 Prepare the Customer Churn Data](#32-prepare-the-customer-churn-data)
+    + [3.2.1 Load Customer Churn Data into Dataframe](#321-load-customer-churn-data-into-dataframe)
+    + [3.2.2 Data Prep](#322-data-prep)
+      - [3.2.2.1 Undersampling Example](#3221-undersampling-example)
+  * [3.3 Training with Azure Automated ML](#33-training-with-azure-automated-ml)
+    + [3.3.1 Connect to your workspace](#331-connect-to-your-workspace)
+    + [3.3.2 Load Prepped ML Dataset](#332-load-prepped-ml-dataset)
+    + [3.3.3 AutoML Configuration](#333-automl-configuration)
+    + [3.3.4 Running and AutoML Experiment](#334-running-and-automl-experiment)
+
 ### 3.1 Install Python SDK on Databricks
 
 Use these [instructions](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-environment#azure-databricks) to set-up Azure Databricks for Automated Machine Learning.  
@@ -15,7 +29,6 @@ We will be installing the Pypi: _azureml-sdk[automl]_
 Create a new Azure Databricks Notebook for training the Automated ML model
 
 #### 3.2.1 Load Customer Churn Data into Dataframe
-
 
 ```python
 churn_df = spark.read.table('customer_churn')
@@ -157,4 +170,3 @@ Then go to  __Experiments__ to view your running experiment
 Find your 'Best' model.
 
 ![aml new studio](../images/run_models.PNG)
-
