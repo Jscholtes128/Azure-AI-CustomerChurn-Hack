@@ -19,7 +19,7 @@ Let’s get hands-on with __Azure Machine Learning__ by working through a custom
 
 <table>
 <tr>
-<td><img align="left" src="/images/config_img.png"> </td><td>Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
+<td><img align="left" src="/Azure-AI-CustomerChurn-Hack/images/config_img.png"> </td><td>Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
 
 The following resources are implemented through-out this material, please ensure you can create in your subscription or resource group:
 
