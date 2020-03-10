@@ -6,7 +6,7 @@
 
 ### Contents
 
-- [Azure Customer Churn Hackathon](../)
+- [Azure Customer Churn Hackathon](../README.md)
   - [3 Azure Automated ML and Azure Databricks](#3-azure-automated-ml-and-azure-databricks)
     - [3.1 Install Python SDK on Databricks](#31-install-python-sdk-on-databricks)
     - [3.2 Prepare the Customer Churn Data](#32-prepare-the-customer-churn-data)

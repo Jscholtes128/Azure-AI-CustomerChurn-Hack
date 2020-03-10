@@ -6,7 +6,7 @@
 
 ### Contents
 
-- [Azure Customer Churn Hackathon](../)
+- [Azure Customer Churn Hackathon](../README.md)
   - [2 Data Load with Azure Databricks](#2-data-load-with-azure-databricks)
     - [2.1 Set-up Secret Store with Azure Key Vault](#21-set-up-secret-store-with-azure-key-vault)
       - [2.1.1 Create an Azure Key Vault - Use Azure CLI](#211-create-an-azure-key-vault---use-azure-cli)

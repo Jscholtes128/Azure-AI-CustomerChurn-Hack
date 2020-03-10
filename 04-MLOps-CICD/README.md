@@ -6,7 +6,7 @@
 
 ### Contents
 
-- [Azure Customer Churn Hackathon](../)
+- [Azure Customer Churn Hackathon](../README.md)
   - [4 Model Deployment Automation with Azure DevOps (CI/CD)](#4-model-deployment-automation-with-azure-devops-cicd)
     - [4.1 Service Principal Authentication](#41-service-principal-authentication)
     - [4.1.1 Update you Azure Databricks Notebooks to use **Service Principal Authentication**](#411-update-you-azure-databricks-notebooks-to-use-service-principal-authentication)

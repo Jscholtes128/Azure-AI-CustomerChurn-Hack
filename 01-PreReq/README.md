@@ -6,7 +6,7 @@
 
 ### Contents
 
-- [Azure Customer Churn Hackathon](../)
+- [Azure Customer Churn Hackathon](../README.md)
   - [1 Hackathon Prerequisites](#1-hackathon-prerequisites)
     - [1.1 Azure Portal](#11-azure-portal)
       - [1.1.1 Do you have Enough Cores?](#111-do-you-have-enough-cores)
