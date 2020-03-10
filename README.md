@@ -35,7 +35,9 @@ The following resources are implemented through-out this material, please ensure
 
 <table>
 <tr>
-<td><img align="left" src="/images/data_load.png" > </td><td>Leverage Powerful cloud compute with Spark as a Service to load, transform and explore the customer churn data.
+<td>
+![hackathon design](/images/data_load.png)
+ </td><td>Leverage Powerful cloud compute with Spark as a Service to load, transform and explore the customer churn data.
 </td>
 </tr>
 </table>
@@ -44,7 +46,9 @@ The following resources are implemented through-out this material, please ensure
 
 <table>
 <tr>
-<td><img align="left" src="/images/ml_img.png" > </td><td>Combine Azure Databricks with Azure Machine Learning Service to accelerate the development of the customer churn model with AutoML.
+<td>
+![hackathon design](/images/ml_img.png)
+ </td><td>Combine Azure Databricks with Azure Machine Learning Service to accelerate the development of the customer churn model with AutoML.
 </td>
 </tr>
 </table>
@@ -53,7 +57,9 @@ The following resources are implemented through-out this material, please ensure
 
 <table>
 <tr>
-<td><img align="left" src="/images/deployment_automation.png" > </td><td>Automate the Databricks Notebooks that were created for data prep, model training and model deployment in a CI/CD pipeline with Azure DevOps.
+<td>
+![hackathon design](/images/deployment_automation.png)
+</td><td>Automate the Databricks Notebooks that were created for data prep, model training and model deployment in a CI/CD pipeline with Azure DevOps.
 </td>
 </tr>
 </table>
