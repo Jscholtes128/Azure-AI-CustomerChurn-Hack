@@ -23,6 +23,7 @@
         - [2.4.1.1 Example Mount](#2411-example-mount)
         - [2.4.1.2 Customer Churn Mount](#2412-customer-churn-mount)
       - [2.4.1 Load Customer Churn Data](#241-load-customer-churn-data)
+
 ### 2.1 Set-up Secret Store with Azure Key Vault
 
 Azure Key Vault can be used to Securely store and tightly control access to tokens, passwords, certificates, API keys, and other secrets
