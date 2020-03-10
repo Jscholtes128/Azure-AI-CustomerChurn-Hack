@@ -17,52 +17,25 @@ Let’s get hands-on with __Azure Machine Learning__ by working through a custom
 
 ## [Step 1 - Hackathon Prerequisites](01-PreReq/)
 
-<table>
-<tr>
-<td><img align="left" src="/Azure-AI-CustomerChurn-Hack/images/config_img.png"> </td><td>Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.
-
+|![hackathon design](/images/config_img.png)|Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data|
+|-|-|
 The following resources are implemented through-out this material, please ensure you can create in your subscription or resource group:
-
 - [Azure Storage Account - Blob](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)
 - [Azure Machine Learning Workspace](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-azure-ml)
 - [Azure Databricks](https://docs.microsoft.com/en-us/azure/azure-databricks/what-is-azure-databricks)
 - [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/user-guide/what-is-azure-devops?view=azure-devops)
-</td>
-</tr>
-</table>
 
 ## [Step 2 - Data Load with Azure Databricks](02-DataLoad/)
 
-<table>
-<tr>
-<td>
-![hackathon design](/images/data_load.png)
- </td><td>Leverage Powerful cloud compute with Spark as a Service to load, transform and explore the customer churn data.
-</td>
-</tr>
-</table>
+| ![hackathon design](/images/data_load.png) | Leverage Powerful cloud compute with Spark as a Service to load, transform and explore the customer churn data.|
+|-|-|
 
 ## [Step 3 - Azure Automated ML and Azure Databricks](03-AutoML/)
 
-<table>
-<tr>
-<td>
-![hackathon design](/images/ml_img.png)
- </td><td>Combine Azure Databricks with Azure Machine Learning Service to accelerate the development of the customer churn model with AutoML.
-</td>
-</tr>
-</table>
+|![hackathon design](/images/ml_img.png)|Combine Azure Databricks with Azure Machine Learning Service to accelerate the development of the customer churn model with AutoML.|
+|-|-|
 
 ## [Step 4 - Model Deployment Automation with Azure DevOps (CI/CD)](04-MLOps-CICD/)
 
-<table>
-<tr>
-<td>
-![hackathon design](/images/deployment_automation.png)
-</td><td>Automate the Databricks Notebooks that were created for data prep, model training and model deployment in a CI/CD pipeline with Azure DevOps.
-</td>
-</tr>
-</table>
-
-
-
+|![hackathon design](/images/deployment_automation.png)|Automate the Databricks Notebooks that were created for data prep, model training and model deployment in a CI/CD pipeline with Azure DevOps.|
+|-|-|
