@@ -6,14 +6,21 @@
 
 ### Contents
 
-- __4 Model Deployment Automation with Azure DevOps (CI/CD)__
-  * [4.1 Service Principal Authentication](#41-service-principal-authentication)
-  * [4.2 Azure DevOps MLOPs Pipeline](#42-azure-devops-mlops-pipeline)
-    + [4.2.1 Connecting Azure Databricks to Azure DevOps](#421-connecting-azure-databricks-to-azure-devops)
-    + [4.2.2 Create a new Pipeline MLOps Pipeline](#422-create-a-new-pipeline-mlops-pipeline)
-    + [4.2.3 Adding Databrick Pipeline Tasks from Marketplace](#423-adding-databrick-pipeline-tasks-from-marketplace)
-    + [4.2.3.1 Generate a Personal Access Token in Databricks](#4231-generate-a-personal-access-token-in-databricks)
+- [Azure Customer Churn Hackathon](../)
+  - [4 Model Deployment Automation with Azure DevOps (CI/CD)](#4-model-deployment-automation-with-azure-devops-cicd)
+    - [4.1 Service Principal Authentication](#41-service-principal-authentication)
+    - [4.1.1 Update you Azure Databricks Notebooks to use **Service Principal Authentication**](#411-update-you-azure-databricks-notebooks-to-use-service-principal-authentication)
+    - [4.2 Azure DevOps MLOPs Pipeline](#42-azure-devops-mlops-pipeline)
+      - [4.2.1 Connecting Azure Databricks to Azure DevOps](#421-connecting-azure-databricks-to-azure-devops)
+      - [4.2.2 Create a new Build Pipeline MLOps Pipeline](#422-create-a-new-build-pipeline-mlops-pipeline)
+      - [4.2.3 Adding Databrick Pipeline Tasks from Marketplace](#423-adding-databrick-pipeline-tasks-from-marketplace)
+      - [4.2.3.1 Generate a Personal Access Token in Databricks](#4231-generate-a-personal-access-token-in-databricks)
+      - [4.2.3.2 Passing Build Parameters using Azure Databricks Widgets](#4232-passing-build-parameters-using-azure-databricks-widgets)
+      - [4.2.4 Create a new Release Pipeline MLOps Pipeline](#424-create-a-new-release-pipeline-mlops-pipeline)
+      - [4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets](#4241-passing-deployment-parameters-using-azure-databricks-widgets)
 
+
+![ml ops](../images/mlop_amls.PNG)
 
 ### 4.1 Service Principal Authentication
 
@@ -43,7 +50,7 @@ Now you are ready to use the service principal authentication. For example, to c
 
 It is strongly recommended that you do not insert the secret password to code. Please create a Key Vault back secret scope as you did in [2.2 Create a Secret and Secret scope for Azure Storage Account](02-DataLoad#22-create-a-secret-and-secret-scope-for-azure-storage-account).
 
-Update you Azure Databricks Notebooks to use **Service Principal Authentication**.
+### 4.1.1 Update you Azure Databricks Notebooks to use **Service Principal Authentication**
 
 ```python
 from azureml.core.authentication import ServicePrincipalAuthentication
@@ -103,7 +110,7 @@ You will need to add a Databricks' Personal Access Token to the pipeline tasks.
 
 Generate a Databricks [Personal Access Token](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/authentication#--generate-a-token)
 
-Example of _Build pipeline_
+Example of _Build Tasks_
 
 ![initialize](../images/build_pipeline.PNG)
 
@@ -123,39 +130,104 @@ buildSource = str(dbutils.widgets.get("buildSource"))
 
 ![train widget](../images/training_adb_widgets.PNG)
 
+Then we pass the _build number_ and _build source_ to our notebook from our __Execute Databricks Notebook Task__
 
+![execute_training_task](../images/execute_training_task.PNG)
+
+Having the build number gives us a lot of options. We can tag out experiment with it. We can also save (or tag) our training and test data for an audit trail.
+
+First we need to set values when the notebook is ran manually. You could do something like:
+
+```python
+if len(buildNumber) <=0:
+  buildNumber = str(uuid.uuid4())
+  buildSource = "manual"
+```
+
+Then we can track our training data with the build:
+
+```python
+dbutils.fs.mkdirs("/mnt/churndata/runs/%s" % buildNumber)
+
+train.to_csv("/dbfs/mnt/churndata/runs/%s/train.csv" % buildNumber, index=False)
+test.to_csv("/dbfs/mnt/churndata/runs/%s/test.csv" % buildNumber, index=False)
+```
+Finally, we can _tag_ our __Experiment__:
+
+```python
+experiment.set_tags({'buildnumber':buildNumber,'buildsource': buildSource})
+```
 
 #### 4.2.4 Create a new Release Pipeline MLOps Pipeline
 
-pipeline_release.png
+Don't forget to update your deployment notebook to use the [service principle for authentication](#411-update-you-azure-databricks-notebooks-to-use-service-principal-authentication).
+
+![pipeline_release](../images/pipeline_release.png)
 
 - **New Release** Pipeline and start with **Empty Job**
 - Add a new _Stage_ calling it _"Stage"_ or _"QA"_.
 
-
 Then click __Jobs Tasks__ to start building the release workflow.
 
-job_tasks.PNG
+![job_tasks](../images/job_tasks.PNG)
 
-We will be working with our Azure Databricks deployment Notebooks during the release pipeline:
+We will add tasks to to _Configure Databricks CLI_, _Start Cluster_, _Execute Deployment Notebook_ and then _Wait for Execution Completion_.
 
-release_tasks.PNG
+![release_task](../images/release_tasks.PNG)
 
 
 #### 4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets
 
+Again we will pass the build number to our deployment notebook, but we will also pass the deployment environment for notebook reuse. See [Azure Databricks Widgets](https://docs.microsoft.com/en-us/azure/databricks/notebooks/widgets) for more details on Azure Databricks Widget and Notebook parameters.
 
-deploy_adb_widgets.PNG
+On cmd 1 of your deployment notebook add the following:
 
-https://docs.microsoft.com/en-us/azure/databricks/notebooks/widgets
+```python
+dbutils.widgets.text("buildNumber","","buildNumber")
+buildNumber = str(dbutils.widgets.get("buildNumber"))
+
+dbutils.widgets.dropdown("deployType","Stage",["Stage","Prod"],"Deploy:")
+deploy_type = dbutils.widgets.get("deployType")
+```
+
+![deploy_adb_widgets](../images/deploy_adb_widgets.PNG)
+
+Again we will send the notebook parameters in our _Databricks Execute Notebook Task_
+
+![deploy_notebook_task](../images/deploy_notebook_task.PNG)
+
+We will updated the logic to deploy the model using the passed-in build number:
+
+```python
+ex = ws.experiments['automl-churn']
 
 
+if(len(buildNumber)<= 0):
+  run = [x for x in ex.get_runs()][0]
+  buildNumber = str(run.tags['buildnumber'])
+else:
+  run = [x for x in ex.get_runs(tags={"buildnumber":buildNumber})][0]
+    
+print("Running for Build Number: {}".format(buildNumber))
+```
+When we deploy our web service we can indicate if it is _dev_, _stage_ or event _prod_ using the passed-in parameter. This can later be utilized for model validations and A/B Testing with our 'taged' test dataset.
 
-__Example Release__
+```python
+from azureml.core.webservice import AciWebservice, Webservice
+from azureml.core.model import Model
+from azureml.core.model import InferenceConfig
+from azureml.core.environment import Environment
+
+webservice_name = "churnservice-" + deploy_type 
+
+```
+Once we are done adding our task to our _'QA'_ or _'Stage'_  Deployment process. We can copy the process for _'Prod'_ and just modify the parameters we are passing to the Azure Databricks deployment notebook.
+
+![prd_deployment_params](../images/prd_deployment_params.PNG)
+
+__Example Release Pipeline__
+
+![release_pipeline](../images/release_pipeline.PNG)
 
 
-
-release_pipeline.PNG
-
-
-
+![question](../images/question_icon.jpg)__Thoughts on a validation step?__

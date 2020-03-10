@@ -6,24 +6,23 @@
 
 ### Contents
 
-- __2 Data Load with Azure Databricks__
-  * [2.1 Set-up Secret Store with Azure Key Vault](#21-set-up-secret-store-with-azure-key-vault)
-    + [2.1.1 Create an Azure Key Vault - Use Azure CLI](#211-create-an-azure-key-vault---use-azure-cli)
-    + [2.1.2 Create an Azure Key Vault - Use Azure Portal](#212-create-an-azure-key-vault---use-azure-portal)
-  * [2.2 Create a Secret and Secret scope for Azure Storage Account](#22-create-a-secret-and-secret-scope-for-azure-storage-account)
-    + [2.2.1 Get Storage Account Key](#221-get-storage-account-key)
-    + [2.2.2 Create Azure Key Vault Secret](#222-create-azure-key-vault-secret)
-    + [2.2.3 Create Azure Databricks Secret Scope](#223-create-azure-databricks-secret-scope)
-  * [2.3 Mounting Azure Storage Account with Azure Databricks](#23-mounting-azure-storage-account-with-azure-databricks)
-    + [2.3.1 Create Databricks Cluster](#231-create-databricks-cluster)
-    + [2.3.2 Create Databricks Notebook](#232-create-databricks-notebook)
-  * [2.4 Loading Customer Churn Data](#24-loading-customer-chun-data)
-    + [2.4.1 Mount Storage Account](#241-mount-storage-account)
-      - [2.4.1.1 Example Mount](#2411-example-mount)
-      - [2.4.1.2 Customer Churn Mount](#2412-customer-churn-mount)
-    + [2.4.1 Load Customer Churn Data](#241-load-customer-churn-data)
-    - [Azure Customer Churn Hackathon](#azure-customer-churn-hackathon)
-
+- [Azure Customer Churn Hackathon](../)
+  - [2 Data Load with Azure Databricks](#2-data-load-with-azure-databricks)
+    - [2.1 Set-up Secret Store with Azure Key Vault](#21-set-up-secret-store-with-azure-key-vault)
+      - [2.1.1 Create an Azure Key Vault - Use Azure CLI](#211-create-an-azure-key-vault---use-azure-cli)
+      - [2.1.2 Create an Azure Key Vault - Use Azure Portal](#212-create-an-azure-key-vault---use-azure-portal)
+    - [2.2 Create a Secret and Secret scope for Azure Storage Account](#22-create-a-secret-and-secret-scope-for-azure-storage-account)
+      - [2.2.1 Get Storage Account Key](#221-get-storage-account-key)
+      - [2.2.2 Create Azure Key Vault Secret](#222-create-azure-key-vault-secret)
+      - [2.2.3 Create Azure Databricks Secret Scope](#223-create-azure-databricks-secret-scope)
+    - [2.3 Mounting Azure Storage Account with Azure Databricks](#23-mounting-azure-storage-account-with-azure-databricks)
+      - [2.3.1 Create Databricks Cluster](#231-create-databricks-cluster)
+      - [2.3.2 Create Databricks Notebook](#232-create-databricks-notebook)
+    - [2.4 Loading Customer Churn Data](#24-loading-customer-churn-data)
+      - [2.4.1 Mount Storage Account](#241-mount-storage-account)
+        - [2.4.1.1 Example Mount](#2411-example-mount)
+        - [2.4.1.2 Customer Churn Mount](#2412-customer-churn-mount)
+      - [2.4.1 Load Customer Churn Data](#241-load-customer-churn-data)
 ### 2.1 Set-up Secret Store with Azure Key Vault
 
 Azure Key Vault can be used to Securely store and tightly control access to tokens, passwords, certificates, API keys, and other secrets

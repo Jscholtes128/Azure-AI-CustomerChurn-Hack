@@ -6,24 +6,23 @@
 
 ### Contents
 
-- __1 Hackathon Prerequisites__
-  * [1.1 Azure Portal](#11-azure-portal)
-    + [1.1.1 Do you have Enough Cores?](#111-do-you-have-enough-cores-)
-  * [1.2 Using Cloud Shell](#12-using-cloud-shell)
-  * [1.3 Create a Resource Group for the Hack](#13-create-a-resource-group-for-the-hack)
-    + [1.3.1 Resource Group - Use Azure CLI](#131-resource-group---use-azure-cli)
-    + [1.3.2 Resource Group - Use Azure Portal](#132-resource-group---use-azure-portal)
-  * [1.4 Create an Azure Storage Account](#14-create-an-azure-storage-account)
-    + [1.4.1 Storage - Use Azure CLI](#141-storage---use-azure-cli)
-    + [1.4.2 Storage - Use Azure Portal](#142-storage---use-azure-portal)
-    + [1.4.3 Download Churn Data](#143-download-churn-data)
-  * [1.5 Create Azure Machine Learning Workspace](#15-create-azure-machine-learning-workspace)
-    + [1.5.1 Azure Machine Learning Workspace - Use Azure CLI](#151-azure-machine-learning-workspace---use-azure-cli)
-    + [1.5.2 Azure Machine Learning Workspace - Use Azure Portal](#152-azure-machine-learning-workspace---use-azure-portal)
-  * [1.6 Azure Databricks (Premium Tier)](#16-azure-databricks-premium-tier)
-    + [1.6.1 Azure Databricks Workspace - Use Azure Portal](#161-azure-databricks-workspace---use-azure-portal)
-
-
+- [Azure Customer Churn Hackathon](../)
+  - [1 Hackathon Prerequisites](#1-hackathon-prerequisites)
+    - [1.1 Azure Portal](#11-azure-portal)
+      - [1.1.1 Do you have Enough Cores?](#111-do-you-have-enough-cores)
+    - [1.2 Using Cloud Shell](#12-using-cloud-shell)
+    - [1.3 Create a Resource Group for the Hack](#13-create-a-resource-group-for-the-hack)
+      - [1.3.1 Resource Group - Use Azure CLI](#131-resource-group---use-azure-cli)
+      - [1.3.2 Resource Group - Use Azure Portal](#132-resource-group---use-azure-portal)
+    - [1.4 Create an Azure Storage Account](#14-create-an-azure-storage-account)
+      - [1.4.1 Storage - Use Azure CLI](#141-storage---use-azure-cli)
+      - [1.4.2 Storage - Use Azure Portal](#142-storage---use-azure-portal)
+      - [1.4.3 Download Churn Data](#143-download-churn-data)
+    - [1.5 Create Azure Machine Learning Workspace](#15-create-azure-machine-learning-workspace)
+      - [1.5.1 Azure Machine Learning Workspace - Use Azure CLI](#151-azure-machine-learning-workspace---use-azure-cli)
+      - [1.5.2 Azure Machine Learning Workspace - Use Azure Portal](#152-azure-machine-learning-workspace---use-azure-portal)
+    - [1.6 Azure Databricks (Premium Tier)](#16-azure-databricks-premium-tier)
+      - [1.6.1 Azure Databricks Workspace - Use Azure Portal](#161-azure-databricks-workspace---use-azure-portal)
 ### 1.1 Azure Portal
 
 Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/en-us/free/) before you begin.

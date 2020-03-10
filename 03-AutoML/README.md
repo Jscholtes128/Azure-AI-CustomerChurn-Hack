@@ -6,17 +6,22 @@
 
 ### Contents
 
-- __3 Azure Automated ML and Azure Databricks__
-  * [3.1 Install Python SDK on Databricks](#31-install-python-sdk-on-databricks)
-  * [3.2 Prepare the Customer Churn Data](#32-prepare-the-customer-churn-data)
-    + [3.2.1 Load Customer Churn Data into Dataframe](#321-load-customer-churn-data-into-dataframe)
-    + [3.2.2 Data Prep](#322-data-prep)
-      - [3.2.2.1 Undersampling Example](#3221-undersampling-example)
-  * [3.3 Training with Azure Automated ML](#33-training-with-azure-automated-ml)
-    + [3.3.1 Connect to your workspace](#331-connect-to-your-workspace)
-    + [3.3.2 Load Prepped ML Dataset](#332-load-prepped-ml-dataset)
-    + [3.3.3 AutoML Configuration](#333-automl-configuration)
-    + [3.3.4 Running and AutoML Experiment](#334-running-and-automl-experiment)
+- [Azure Customer Churn Hackathon](../)
+  - [3 Azure Automated ML and Azure Databricks](#3-azure-automated-ml-and-azure-databricks)
+    - [3.1 Install Python SDK on Databricks](#31-install-python-sdk-on-databricks)
+    - [3.2 Prepare the Customer Churn Data](#32-prepare-the-customer-churn-data)
+      - [3.2.1 Load Customer Churn Data into Dataframe](#321-load-customer-churn-data-into-dataframe)
+      - [3.2.2 Data Prep](#322-data-prep)
+        - [3.2.2.1 Undersampling Example](#3221-undersampling-example)
+    - [3.3 Training with Azure Automated ML](#33-training-with-azure-automated-ml)
+      - [3.3.1 Connect to your workspace](#331-connect-to-your-workspace)
+      - [3.3.2 Load Preped ML Dataset](#332-load-preped-ml-dataset)
+      - [3.3.3 AutoML Configuration](#333-automl-configuration)
+      - [3.3.4 Running and AutoML Experiment](#334-running-and-automl-experiment)
+    - [3.4 Deploying the Best Model](#34-deploying-the-best-model)
+      - [3.4.1 Connect to your workspace](#341-connect-to-your-workspace)
+      - [3.4.2 Deploy Latest Experiment](#342-deploy-latest-experiment)
+      - [3.4.2.1 Azure Web Service Deployment](#3421-azure-web-service-deployment)
 
 ### 3.1 Install Python SDK on Databricks
 
@@ -34,7 +39,7 @@ Create a new Azure Databricks Notebook for training the Automated ML model
 churn_df = spark.read.table('customer_churn')
 ```
 
-![customer churn describe](../images/question_icon.jpg){: .image-left } How Does the data look?
+![customer churn describe](../images/question_icon.jpg) How Does the data look?
 
 Quick Describe
 
@@ -173,7 +178,11 @@ Find your 'Best' model.
 
 ### 3.4 Deploying the Best Model
 
-Create a new Azure Databricks Notebook for training the Automated ML model
+Next we will take the 'best' model from out AutoML experiment, register it, have a docker image created for deployment as a web service.
+
+![model_deployment.PNG](../images/model_deployment.PNG)
+
+Create a new Azure Databricks Notebook for training the Automated ML model.
 
 #### 3.4.1 Connect to your workspace
 
@@ -220,4 +229,64 @@ autorun = AutoMLRun(ex, run.id)
 best_run, fitted_model = autorun.get_output()
 ```
 
+Now that we have the _best_ model we will want to register it for deployment. We will use the _AutoMlRun_ __register_model__ function. The model registry tracks the model version and we can add a friendly description along with searchable tags. 
 
+```python
+description = 'Customer Churn Auto ML'
+model = autorun.register_model(description = description)
+print(autorun.model_id)
+```
+
+#### 3.4.2.1 Azure Web Service Deployment
+
+Deploying as an Azure Web Service offers the following benefits:
+
+- A deployed web service can run on [Azure Container Instances (ACI)](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-overview), [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes), or field-programmable gate arrays (FPGA). 
+- Can receive scoring requests via an exposed a load-balanced, HTTP endpoint.
+- Can be monitored by collecting Application Insight telemetry and/or model telemetry. 
+- Azure can automatically scale deployments
+
+For deployment we will include __AciWebservice__ and __Webservice__. Normally we would have to create our own _scoring.py_ file for inferencing and the conda dependency (YML) file, but with Azure AutoML these files are created along with the _best_ model. We will just use them from the model output folder.
+
+Download _best_ model, scoring file and yml file.
+
+```python
+deployment_paths = '/dbfs/mnt/churndata/runs/%s/deployment/' % run.id
+
+best_run.download_files(prefix='outputs',output_directory=deployment_paths)
+
+```
+
+Deploy model as ACI web service (__auth_enabled=True__ must be set for key authentication)
+
+```python
+from azureml.core.webservice import AciWebservice, Webservice
+from azureml.core.model import Model
+from azureml.core.model import InferenceConfig
+from azureml.core.environment import Environment
+
+webservice_name = "churnservice"
+
+#remove webservice is exists
+try:
+    service = Webservice(ws, webservice_name)        
+    service.delete()
+    
+except Exception as e:
+    print("No Existing Service")
+
+
+myenv = Environment.from_conda_specification(name = 'myenv',
+                                             file_path = (deployment_paths + "/outputs/conda_env_v_1_0_0.yml"))
+
+inference_config = InferenceConfig(entry_script=(deployment_paths + "/outputs/scoring_file_v_1_0_0.py"),
+                                   environment=myenv)
+
+deployment_config = AciWebservice.deploy_configuration(cpu_cores = 1, memory_gb = 1,auth_enabled=True)
+service = Model.deploy(ws, webservice_name, [model], inference_config, deployment_config)
+service.wait_for_deployment(show_output = True)
+print(service.state)
+
+```
+
+![question](../images/question_icon.jpg)__Can you test the web service?__
