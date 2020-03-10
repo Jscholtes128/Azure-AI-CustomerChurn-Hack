@@ -4,7 +4,7 @@
 
 Let’s get hands-on with __Azure Machine Learning__ by working through a customer churn prediction solution. During this event we will quickly gain experience with Azure Machine Learning and __Azure Databricks__. We can use the provided data to step though the documentation as a workshop or connect to your own data and _hack_ together an E2E solution for your specific needs.
 
-![design](/images/design.png)
+![design](/images/design.PNG)
 
 ## Objectives
 
