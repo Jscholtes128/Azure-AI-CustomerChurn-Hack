@@ -2,14 +2,18 @@
 
 ![hackathon design](/images/hackathon.jpg)
 
-Let’s get hands-on with Azure Machine Learning by working through a customer churn prediction solution. During this event we will quickly gain experience with Azure Machine Learning and Azure Databricks using the provided data in preparation for a hackathon.
+Let’s get hands-on with __Azure Machine Learning__ by working through a customer churn prediction solution. During this event we will quickly gain experience with Azure Machine Learning and __Azure Databricks__. We can use the provided data to step though the documentation as a workshop or connect to your own data and _hack_ together an E2E solution for your specific needs.
+
+![design](images/design.png)
 
 ## Objectives
 
-- Learn how to securely ingest data located in an Azure Storage Account from Azure Databrick
-- Track experimentation with Azure Machine Learning & Azure Databricks
-- Leverage Azure Databricks as a collaborative workspace to accelerate data exploration and model development.
-- Explore MlOps pipelines with Azure Machine Learning and Azure DevOps
+- Learn how to __securely ingest data__ from __Azure Storage Account__ with _Azure Databricks__
+- __Visualize and transform__ data using __Azure Databricks__ collaborative notebooks.
+- __Track__ Machine Learning __Experiments__ with __Azure Machine Learning__
+- Leverage __Azure Automated Machine Learning__ to accelerate identifying the _best_ model fro deployment
+- __Register and deploy model__s with Azure Machine Learning
+- Develop __CICD MLOPs__ with __Azure DevOps__, __Azure Databricks__ and __Azure Machine Leaning__
 
 ## [Step 1 - Hackathon Prerequisites](01-PreReq/)
 

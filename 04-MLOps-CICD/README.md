@@ -14,10 +14,10 @@
       - [4.2.1 Connecting Azure Databricks to Azure DevOps](#421-connecting-azure-databricks-to-azure-devops)
       - [4.2.2 Create a new Build Pipeline MLOps Pipeline](#422-create-a-new-build-pipeline-mlops-pipeline)
       - [4.2.3 Adding Databrick Pipeline Tasks from Marketplace](#423-adding-databrick-pipeline-tasks-from-marketplace)
-      - [4.2.3.1 Generate a Personal Access Token in Databricks](#4231-generate-a-personal-access-token-in-databricks)
-      - [4.2.3.2 Passing Build Parameters using Azure Databricks Widgets](#4232-passing-build-parameters-using-azure-databricks-widgets)
+        - [4.2.3.1 Generate a Personal Access Token in Databricks](#4231-generate-a-personal-access-token-in-databricks)
+        - [4.2.3.2 Passing Build Parameters using Azure Databricks Widgets](#4232-passing-build-parameters-using-azure-databricks-widgets)
       - [4.2.4 Create a new Release Pipeline MLOps Pipeline](#424-create-a-new-release-pipeline-mlops-pipeline)
-      - [4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets](#4241-passing-deployment-parameters-using-azure-databricks-widgets)
+        - [4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets](#4241-passing-deployment-parameters-using-azure-databricks-widgets)
 
 
 ![ml ops](../images/mlop_amls.PNG)
@@ -104,7 +104,7 @@ Go to **Add Task** then search for **Databricks**. You will need to add the Data
 
 **This does require elevated permissions on the subscription**
 
-#### 4.2.3.1 Generate a Personal Access Token in Databricks
+##### 4.2.3.1 Generate a Personal Access Token in Databricks
 
 You will need to add a Databricks' Personal Access Token to the pipeline tasks.
 
@@ -114,7 +114,7 @@ Example of _Build Tasks_
 
 ![initialize](../images/build_pipeline.PNG)
 
-#### 4.2.3.2 Passing Build Parameters using Azure Databricks Widgets
+##### 4.2.3.2 Passing Build Parameters using Azure Databricks Widgets
 
 We can record the build number from Azure DevOps with our experiment to simplify tracking runs with data prep and model changes. To pass the build number as a parameter to Azure Databricks we will use a Notebook parameter through the use of [Azure Databricks Widgets](https://docs.microsoft.com/en-us/azure/databricks/notebooks/widgets)
 
@@ -175,8 +175,7 @@ We will add tasks to to _Configure Databricks CLI_, _Start Cluster_, _Execute De
 
 ![release_task](../images/release_tasks.PNG)
 
-
-#### 4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets
+##### 4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets
 
 Again we will pass the build number to our deployment notebook, but we will also pass the deployment environment for notebook reuse. See [Azure Databricks Widgets](https://docs.microsoft.com/en-us/azure/databricks/notebooks/widgets) for more details on Azure Databricks Widget and Notebook parameters.
 

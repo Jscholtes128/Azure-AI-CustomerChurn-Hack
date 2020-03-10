@@ -21,7 +21,7 @@
     - [3.4 Deploying the Best Model](#34-deploying-the-best-model)
       - [3.4.1 Connect to your workspace](#341-connect-to-your-workspace)
       - [3.4.2 Deploy Latest Experiment](#342-deploy-latest-experiment)
-      - [3.4.2.1 Azure Web Service Deployment](#3421-azure-web-service-deployment)
+        - [3.4.2.1 Azure Web Service Deployment](#3421-azure-web-service-deployment)
 
 ### 3.1 Install Python SDK on Databricks
 
@@ -237,7 +237,7 @@ model = autorun.register_model(description = description)
 print(autorun.model_id)
 ```
 
-#### 3.4.2.1 Azure Web Service Deployment
+##### 3.4.2.1 Azure Web Service Deployment
 
 Deploying as an Azure Web Service offers the following benefits:
 
