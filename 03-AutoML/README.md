@@ -170,3 +170,54 @@ Then go to  __Experiments__ to view your running experiment
 Find your 'Best' model.
 
 ![aml new studio](../images/run_models.PNG)
+
+### 3.4 Deploying the Best Model
+
+Create a new Azure Databricks Notebook for training the Automated ML model
+
+#### 3.4.1 Connect to your workspace
+
+```python
+from azureml.core.workspace import Workspace
+from azureml.train.automl import AutoMLConfig
+from azureml.core.experiment import Experiment
+import logging
+
+
+subscription_id = "YOUR SUBSCRIPTION"
+resource_group = "YOUR RESOURCE GROUP"
+workspace_name =  "AZURE ML WORKSPACE NAME"#your workspace name
+workspace_region = "centralus" #your region
+
+
+ws = Workspace(workspace_name = workspace_name,
+               subscription_id = subscription_id,
+               resource_group = resource_group)
+```
+
+#### 3.4.2 Deploy Latest Experiment
+
+After connecting to your workspace we will create a deployment for the last AutoML run
+
+```python
+
+# Get automl-churn experiments
+ex = ws.experiments['automl-churn']
+
+#get last run
+run = [x for x in ex.get_runs()][0]
+```
+
+In this documentation we have been working with Azure Automated ML. Because our last experiment was an automl run, we can use the attributes of _AutoMLRun_ to simplify deploying the _best_ model.
+
+```python
+from azureml.train.automl.run import AutoMLRun
+
+#get AutoMLRun from last run
+autorun = AutoMLRun(ex, run.id)
+
+#get 'best' model
+best_run, fitted_model = autorun.get_output()
+```
+
+

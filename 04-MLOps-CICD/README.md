@@ -79,7 +79,7 @@ Go to your Azure DevOps organization '<https://[organization].visualstudio.com/>
 
 Then follow the steps for [Azure DevOps Services Version Control](https://docs.microsoft.com/en-us/azure/databricks/notebooks/azure-devops-services-version-control)
 
-#### 4.2.2 Create a new Pipeline MLOps Pipeline
+#### 4.2.2 Create a new Build Pipeline MLOps Pipeline
 
 ![initialize](../images/new_pipeline.png)
 
@@ -97,10 +97,65 @@ Go to **Add Task** then search for **Databricks**. You will need to add the Data
 
 **This does require elevated permissions on the subscription**
 
+#### 4.2.3.1 Generate a Personal Access Token in Databricks
+
+You will need to add a Databricks' Personal Access Token to the pipeline tasks.
+
+Generate a Databricks [Personal Access Token](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/authentication#--generate-a-token)
+
 Example of _Build pipeline_
 
 ![initialize](../images/build_pipeline.PNG)
 
-#### 4.2.3.1 Generate a Personal Access Token in Databricks
+#### 4.2.3.2 Passing Build Parameters using Azure Databricks Widgets
 
-Generate a Databricks [Personal Access Token](https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/authentication#--generate-a-token)
+We can record the build number from Azure DevOps with our experiment to simplify tracking runs with data prep and model changes. To pass the build number as a parameter to Azure Databricks we will use a Notebook parameter through the use of [Azure Databricks Widgets](https://docs.microsoft.com/en-us/azure/databricks/notebooks/widgets)
+
+In command cell 1 of our Training Notebook add the following to create our notebook parameters.
+
+```python
+dbutils.widgets.text("buildNumber","","buildNumber")
+buildNumber = str(dbutils.widgets.get("buildNumber"))
+
+dbutils.widgets.text("buildSource","","buildSource")
+buildSource = str(dbutils.widgets.get("buildSource"))
+```
+
+![train widget](../images/training_adb_widgets.PNG)
+
+
+
+#### 4.2.4 Create a new Release Pipeline MLOps Pipeline
+
+pipeline_release.png
+
+- **New Release** Pipeline and start with **Empty Job**
+- Add a new _Stage_ calling it _"Stage"_ or _"QA"_.
+
+
+Then click __Jobs Tasks__ to start building the release workflow.
+
+job_tasks.PNG
+
+We will be working with our Azure Databricks deployment Notebooks during the release pipeline:
+
+release_tasks.PNG
+
+
+#### 4.2.4.1 Passing Deployment Parameters using Azure Databricks Widgets
+
+
+deploy_adb_widgets.PNG
+
+https://docs.microsoft.com/en-us/azure/databricks/notebooks/widgets
+
+
+
+__Example Release__
+
+
+
+release_pipeline.PNG
+
+
+
