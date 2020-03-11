@@ -17,6 +17,8 @@ Let’s get hands-on with __Azure Machine Learning__ by working through a custom
 
 ## [Step 1 - Hackathon Prerequisites](01-PreReq/)
 
+![config_title.png](images/config_title.png)
+
 |![hackathon design](/images/config_img.png)| Set-Up your Azure resources to complete this End-2-End workshop or perform a similar hack event with your own data.|
 |---|---|
 
